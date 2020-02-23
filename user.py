@@ -18,7 +18,7 @@ firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 
 # Log the user in
-user = auth.sign_in_with_email_and_password(email, password)
+#user = auth.sign_in_with_email_and_password(email, password)
 
 # Get a reference to the database service
 db = firebase.database()
@@ -29,7 +29,7 @@ data = {
 }
 
 # Pass the user's idToken to the push method
-results = db.child("users").push(data, user['idToken'])
+#results = db.child("users").push(data, user['idToken'])
 
 def main():
     print("hello world")
