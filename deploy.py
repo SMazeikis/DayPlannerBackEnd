@@ -2,9 +2,13 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from user import fer
+from yelp.client import Client
+
+MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218X6M3RO6t90tQGvbBAcX7pP9A3KnEo8FRfYZ1t1efZ_SXvj7POdAmmyqptTXnYx" #  Replace this with your real API key
 
 app = Flask(__name__)
 CORS(app)
+client = Client(MY_API_KEY)
 
 @app.route('/list', methods=['GET'])
 def read():
@@ -16,7 +20,13 @@ def read():
 @app.route('/parse_data', methods=['GET', 'POST'])
 def parse():
     data = request.json
+    print(data)
     if request.method == "POST":
          return(data)
     else:
         return("none")
+
+@app.route('/restaurant_category', methods=['GET', 'POST'])
+def parse():
+    data = request.json
+    return(client.business.get_by_id('yelp-Dublin'))
