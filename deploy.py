@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from user import fer
@@ -10,6 +11,18 @@ app = Flask(__name__)
 CORS(app)
 client = Client(MY_API_KEY)
 
+endpoint = "https://api.yelp.com/v3/businesses/search"
+header = {'Authorization': 'bearer %s' % MY_API_KEY}
+# parameters = {'term' : "indian",
+#               'limit': 10,
+#               'radius': 1000,
+#               'location': 'Dublin'}
+# response = requests.get(url = endpoint, params = parameters, headers= header)
+# business_data = response.json()
+# for business in business_data['businesses']:
+#     print(business['name'])
+
+
 @app.route('/list', methods=['GET'])
 def read():
     try:
@@ -20,12 +33,20 @@ def read():
 @app.route('/parse_data', methods=['GET', 'POST'])
 def parse():
     data = request.json
-    print(data)
-    if request.method == "POST":
-         return(data)
-    else:
-        return("none")
+    resolved_data = restaurant_info(data.html)
+    try:
+        return(resolved_data)
+    except:
+        return("welp")
 
-@app.route('/restaurant_category', methods=['GET', 'POST'])
-def parse():
-    return(client.business.get_by_id('yelp-Dublin'))
+def restaurant_info(name):
+    restaurant_names = []
+    parameters = {'term' : name,
+              'limit': 10,
+              'radius': 1000,
+              'location': 'Dublin'}
+    response = requests.get(url = endpoint, params = parameters, headers= header)
+    business_data = response.json()
+    for business in business_data['businesses']:
+        restaurant_names.append(business['name'])
+    return restaurant_names
