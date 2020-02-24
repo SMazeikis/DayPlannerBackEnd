@@ -8,6 +8,6 @@ CORS(app)
 @app.route('/list', methods=['GET'])
 def read():
     try:
-        return("FUCK YOU")
+        return("hbo")
     except Exception as e:
         return f"An Error Occured: {e}"

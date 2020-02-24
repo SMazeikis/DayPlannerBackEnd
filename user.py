@@ -30,10 +30,14 @@ data = {
 
 # Pass the user's idToken to the push method
 #results = db.child("users").push(data, user['idToken'])
+import os
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
-def main():
-    print("hello world")
-    print(config.get("apiKey"))
+app = Flask(__name__)
+CORS(app)
 
-if __name__ == "__main__":
-    main()
+@app.route('/l', methods=['GET'])
+def read():
+    try:
+        return("hello")
