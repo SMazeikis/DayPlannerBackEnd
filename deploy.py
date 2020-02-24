@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from user import fer
@@ -35,7 +36,7 @@ def parse():
     try:
         data = request.get_json()
         resolved_data = restaurant_info(data["html"])
-        return("what")
+        return(resolved_data[0])
     except:
         return("welp")
 
@@ -53,10 +54,10 @@ def restaurant_info(name):
         restaurant_names.append(business['name'])
     return restaurant_names
 
-# data = {
-#             "html": "INDIAN",
-#             "id": 0,
-#             "clicked": "false"
-#           }
-# resolved_data = restaurant_info(data["html"])
-# print(resolved_data)
+data = {
+            "html": "INDIAN",
+            "id": 0,
+            "clicked": "false"
+          }
+resolved_data = restaurant_info(data["html"])
+print(re)
