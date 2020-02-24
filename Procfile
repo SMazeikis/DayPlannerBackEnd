@@ -1,1 +1,2 @@
-web: gunicorn drp:app user:app
+web: gunicorn user:app
+web: gunicorn drp:app
