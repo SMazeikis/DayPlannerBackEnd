@@ -34,6 +34,7 @@ def read():
 def parse():
     try:
         data = request.json
+        print(data)
         resolved_data = restaurant_info(data["html"])
         return(resolved_data)
     except:
