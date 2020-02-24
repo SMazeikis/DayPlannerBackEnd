@@ -14,7 +14,7 @@ def read():
         return f"An Error Occured: {e}"
 
 @app.route('/parse_data', methods=['GET', 'POST'])
-def parse_data(data):
+def parse(data):
     if request.method == "POST":
          return(data)
     else:
