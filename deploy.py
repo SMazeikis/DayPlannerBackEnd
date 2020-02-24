@@ -32,9 +32,9 @@ def read():
 
 @app.route('/parse_data', methods=['GET', 'POST'])
 def parse():
-    data = request.json
-    resolved_data = restaurant_info(data.html)
     try:
+        data = request.json
+        resolved_data = restaurant_info(data.html)
         return(data)
     except:
         return("welp")
