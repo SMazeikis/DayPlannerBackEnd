@@ -28,5 +28,4 @@ def parse():
 
 @app.route('/restaurant_category', methods=['GET', 'POST'])
 def parse():
-    data = request.json
     return(client.business.get_by_id('yelp-Dublin'))
