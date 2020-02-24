@@ -35,7 +35,7 @@ def parse():
     data = request.json
     resolved_data = restaurant_info(data.html)
     try:
-        return(resolved_data)
+        return(data)
     except:
         return("welp")
 
