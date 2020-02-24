@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from user import fer
 from yelp.client import Client
@@ -36,7 +36,7 @@ def parse():
     try:
         data = request.get_json()
         resolved_data = restaurant_info(data["html"])
-        return(resolved_data[0])
+        return(make_response(json.dumps(resolved_data)))
     except:
         return("welp")
 
@@ -54,10 +54,10 @@ def restaurant_info(name):
         restaurant_names.append(business['name'])
     return restaurant_names
 
-data = {
-            "html": "INDIAN",
-            "id": 0,
-            "clicked": "false"
-          }
-resolved_data = restaurant_info(data["html"])
-print(re)
+# data = {
+#             "html": "INDIAN",
+#             "id": 0,
+#             "clicked": "false"
+#           }
+# resolved_data = restaurant_info(data["html"])
+# print(re)
