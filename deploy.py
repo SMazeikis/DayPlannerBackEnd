@@ -34,10 +34,12 @@ def read():
 def parse():
     try:
         data = request.json
-        resolved_data = restaurant_info(data.html)
-        return(data)
+        resolved_data = restaurant_info(data["html"])
+        return(resolved_data)
     except:
         return("welp")
+
+
 
 def restaurant_info(name):
     restaurant_names = []
@@ -50,3 +52,11 @@ def restaurant_info(name):
     for business in business_data['businesses']:
         restaurant_names.append(business['name'])
     return restaurant_names
+
+data = {
+            "html": "INDIAN",
+            "id": 0,
+            "clicked": "false"
+          }
+resolved_data = restaurant_info(data["html"])
+print(resolved_data)
