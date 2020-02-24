@@ -12,3 +12,10 @@ def read():
         return(fer())
     except Exception as e:
         return f"An Error Occured: {e}"
+
+@app.route('/parse_data', methods=['GET', 'POST'])
+def parse_data(data):
+    if request.method == "POST":
+         return(data)
+    else:
+        return("none")
