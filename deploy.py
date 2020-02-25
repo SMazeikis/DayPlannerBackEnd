@@ -22,11 +22,11 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
-cred = credentials.Certificate('./nothing.json')
-default_app = firebase_admin.initialize_app(cred)
-db = firestore.client()
-snapshot = db.collection('users').document("NUB1BGl5H0gqDi2JPYRzflO6GEF3")
-print(snapshot.get().to_dict())
+# cred = credentials.Certificate('./nothing.json')
+# default_app = firebase_admin.initialize_app(cred)
+# db = firestore.client()
+# snapshot = db.collection('users').document("NUB1BGl5H0gqDi2JPYRzflO6GEF3")
+# print(snapshot.get().to_dict())
 
 MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218X6M3RO6t90tQGvbBAcX7pP9A3KnEo8FRfYZ1t1efZ_SXvj7POdAmmyqptTXnYx"
 
