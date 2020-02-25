@@ -19,8 +19,8 @@ def parse():
         data = request.get_json()
         resolved_data = restaurant_info(data["html"])
         return(make_response(json.dumps(resolved_data)))
-    except:
-        return(":)")
+    except Exception as e:
+        return(e)
 
 @app.route('/userPreferences', methods=['GET', 'POST'])
 def userPreferences():
@@ -30,13 +30,6 @@ def userPreferences():
         return(make_response(json.dumps(resolved_data)))
     except:
         return(":)")
-
-@app.route('/test', methods=['GET', 'POST'])
-def tester():
-    try:
-        return(test())
-    except:
-        return("that did not work :)")
 
 def restaurant_info(name):
     restaurant_names = []
