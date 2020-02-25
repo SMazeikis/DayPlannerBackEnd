@@ -1,4 +1,7 @@
 import pyrebase
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 config = {
   "apiKey" : "AIzaSyDQT78_79sRW4nPY2hj_2zu6TX_V3VoD8k",
@@ -11,6 +14,12 @@ config = {
   "measurementId" : "G-QZFMJ335XN"
 }
 
+# Use a service account
+cred = credentials.Certificate('dayplanner-backend/nothing.json')
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
+
 firebase = pyrebase.initialize_app(config)
 
 
@@ -20,8 +29,6 @@ auth = firebase.auth()
 # Log the user in
 #user = auth.sign_in_with_email_and_password(email, password)
 
-# Get a reference to the database service
-db = firebase.database()
 
 # data to save
 data = {
@@ -30,8 +37,6 @@ data = {
 
 # Pass the user's idToken to the push method
 #results = db.child("users").push(data, user['idToken'])
-def fer():
-    try:
-        return("hello")
-    except:
-        return("what")
+users_ref = db.collection(u'users')
+docs = users_ref.stream()
+print(docs)
