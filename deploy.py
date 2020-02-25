@@ -26,19 +26,19 @@ header = {'Authorization': 'bearer %s' % MY_API_KEY}
 def userPreferences():
     try:
         data = request.get_json()
-        resolved_data = data
+        resolved_data =  restaurant_info(data[0]["html"])
         return(make_response(json.dumps(resolved_data)))
     except Exception as e:
         return(e)
 
-# def restaurant_info(name):
-#     restaurant_names = []
-#     parameters = {'term' : name,
-#               'limit': 10,
-#               'radius': 1000,
-#               'location': 'Dublin'}
-#     response = requests.get(url = endpoint, params = parameters, headers= header)
-#     business_data = response.json()
-#     for business in business_data['businesses']:
-#         restaurant_names.append(business['name'])
-#     return restaurant_names
+def restaurant_info(name):
+    restaurant_names = []
+    parameters = {'term' : name,
+              'limit': 10,
+              'radius': 1000,
+              'location': 'Dublin'}
+    response = requests.get(url = endpoint, params = parameters, headers= header)
+    business_data = response.json()
+    for business in business_data['businesses']:
+        restaurant_names.append(business['name'])
+    return restaurant_names
