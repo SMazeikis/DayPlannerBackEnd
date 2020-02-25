@@ -26,8 +26,15 @@ header = {'Authorization': 'bearer %s' % MY_API_KEY}
 def userPreferences():
     try:
         data = request.get_json()
+        restaurants = {}
+        for choice in data:
+            if choice["clicked"]:
+                restaurants[choice["html"]] = restaurant_info(choice["html"])
+            else:
+                pass
         resolved_data =  restaurant_info(data[0]["html"])
-        return(make_response(json.dumps(resolved_data)))
+        #return(make_response(json.dumps(resolved_data)))
+        return(restaurants)
     except Exception as e:
         return(e)
 
