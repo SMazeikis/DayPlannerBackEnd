@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "dayplanner-740b3",
+    "private_key_id": "fef5546ffb44b31c1ce1bd60b22c698f11ffd36d",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1rAqzenlNLWlZ\nAItlNU1/B5HYnWeOLfe88iGwrlVO7sJxKK/mr+yQS8lWztWMTK7/VB6TLNIdQKeZ\nzPOTTBCpxNRtwG9Cse4chKAkaqXXebJB/WVbxEz/56PxoZx7RVGB9S9kknoOccza\nw8w/oKNWYjMhp+6nGh/eazKHA1m3e0cNRcl739Oaa3W0r2psa7Tzlz+vl29BmxsJ\nqxZnlrz14ZIU2MzKUeSkhQVDIgtf32BZIUyLlAXvi8U7Gnhn1shuvS0GAC5wOAGZ\n3aBaQp8+sY75+VVqbOOceCHSi89OufA1C9nVRsWxii0+sOWTAIU9npSPYykqLTl2\n/wjiiq5vAgMBAAECggEAG3ekM+Kj4xanQ5JLgRqABGFr8aj1do+zUdlMsrPeU2LR\n+d3sSnVKz75FoLRWS9zEO00dRPnqgrW7IWEqv+3TjyIipBK2P7U7NQtFqHvfZdFm\nhtz9rX7jzW/ZCmLO5UG5GGxY+rG9dor02BabvlBWocGTItbgbwS00My7BPgYC8on\nA1xKTHtJ7zPF6YE+b1EuuxVAVzDi578ZToo6bA+qYYI20Cihk4ToqHsO117icSFW\nXheYDhxpRylj+EEB6hH5fBP7GlubRyWAcnSWJWcmUhMVjFYNa4u/ZrjgAfWaTvlk\n6raTAz310JFiHcWwnbOD036WYnJF1ZAS0aUnPqjMkQKBgQDpLDkYBh0wlgFXs6YC\n2bMt50UuyrIs3SV3pKLj3MZ5DTXWwGGPtvhYMduFz4g+Znaxldbu1DxlZ4RipCo8\nMgcKSgXsDc+eBnGZ4IJyYSMh2Az15N8Kb0FufEmTDXHfnGEnweB97uOd9EOPocnK\nLQ7ZF5R/mkYV5Ciig6sgrcAnkwKBgQDHdRuQ+Q1X+hZy4p+vc5b5Vu9wbJJSyl+q\n7k1K2uKzYvaCjNHcW+tLGUJ/rn8kjsxWG8nNcEOcgxF7zCcJnN2M97THCD3IyPgS\niQz3mOksLOxuhQ0558M6XNIC+cyuCoqQKL2QLfHuk5jpUR9MgJYNl89v9aFqxouv\nRyzATZevNQKBgQDhioUvV7qkZHSoAH10BF/s5udke2wdOUwkjnuBLOxN6xlIwI2e\nFb3ikVdl93gx46qr2+Qq3+ALtjW3tFOmJj3pFfDkg/dvQ4xe62tCd/MjqXff4aJc\n1YDU/iOsujSLtxfC/SXIqmpBPySaqkQl66+RDd32D6P7SNaFXBcLZQWZQQKBgFnP\nBCOJ0JVNeTAvlKFGlbMdjuB7MoNuthbcCBdtaWhGZiKwT4o+JTsCW6vsITmPxrf6\n+Sm0o+zkI0ovyWANrsBbhJ2du1weCX0nEpyl0E/gxnCZHjR1g7VSuAk4+w1el7eD\ncJ9r4KSA9vgPW91xhJ8IPRH3csAGOD0q+h54kZUFAoGBAOLI096WdTP+NLsTLdfA\nX5IC1WUMDLCyZgIdw/ihEPYe4e4HdG3Zkk/Tu7vuVGYPc8o6P8f4roEI1Tarpti2\nQju51nT2IjQpjpdjTbvXUljvOTHEBr49l+m35TD4SSihwt5qj2QGcjS9pe4Kmnqe\nBqJ1n/Fhciv/hzFLWQJSES1q\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-uve1j@dayplanner-740b3.iam.gserviceaccount.com",
+    "client_id": "106840048139953224984",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-uve1j%40dayplanner-740b3.iam.gserviceaccount.com"
+  }
+  
