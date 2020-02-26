@@ -3,7 +3,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-cred = credentials.Certificate(r"C:\Users\Salvijus\Desktop\2020-ca326-jholbanel-dayplanner\code\dayplanner-backend\confidential.json")
+cred = credentials.Certificate('./confidentials.json')
 default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
