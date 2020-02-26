@@ -21,7 +21,7 @@ header = {'Authorization': 'bearer %s' % MY_API_KEY}
 #         resolved_data = restaurant_info(data["html"])
 #         return(make_response(json.dumps(resolved_data)))
 #     except Exception as e:
-#         return(e)
+#         return(e
 
 @app.route('/userPreferences', methods=['GET', 'POST'])
 def userPreferences():
