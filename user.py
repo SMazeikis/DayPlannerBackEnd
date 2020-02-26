@@ -8,7 +8,21 @@ default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-snapshot = db.collection('users').document("NUB1BGl5H0gqDi2JPYRzflO6GEF3")
-
-def test():
-  return "test success :D"
+def assignPreferences(data):
+  userId = data["userID"]
+  snapshot = db.collection('users').document(userId)
+  foodDict = {}
+  activityDict = {}
+  for choice in data["foodPreferences"]:
+    if choice["clicked"]:
+        foodDict[choice["html"]] = True
+    else:
+        pass
+  for choice in data["activityPreferences"]:
+    if choice["clicked"]:
+        activityDict[choice["html"]] = True
+    else:
+        pass
+  snapshot.set(foodDict)
+  snapshot.set(activityDict)
+  return "ok"

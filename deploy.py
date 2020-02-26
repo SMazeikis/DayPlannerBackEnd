@@ -2,13 +2,14 @@ import os, requests, json, pyrebase, firebase_admin
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from yelp.client import Client
-from user import test
+from user import assignPreferences
 
 MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218X6M3RO6t90tQGvbBAcX7pP9A3KnEo8FRfYZ1t1efZ_SXvj7POdAmmyqptTXnYx"
 
 app = Flask(__name__)
 CORS(app)
 client = Client(MY_API_KEY)
+
 
 endpoint = "https://api.yelp.com/v3/businesses/search"
 header = {'Authorization': 'bearer %s' % MY_API_KEY}
@@ -26,15 +27,8 @@ header = {'Authorization': 'bearer %s' % MY_API_KEY}
 def userPreferences():
     try:
         data = request.get_json()
-        restaurants = {}
-        for choice in data:
-            if choice["clicked"]:
-                restaurants[choice["html"]] = restaurant_info(choice["html"])
-            else:
-                pass
-        resolved_data =  restaurant_info(data[0]["html"])
-        #return(make_response(json.dumps(resolved_data)))
-        return(restaurants)
+        assignPreferences(data)
+        return "ok"
     except Exception as e:
         return(e)
 
