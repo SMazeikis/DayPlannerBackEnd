@@ -14,15 +14,6 @@ client = Client(MY_API_KEY)
 endpoint = "https://api.yelp.com/v3/businesses/search"
 header = {'Authorization': 'bearer %s' % MY_API_KEY}
 
-# @app.route('/parse_data', methods=['GET', 'POST'])
-# def parse():
-#     try:
-#         data = request.get_json()
-#         resolved_data = restaurant_info(data["html"])
-#         return(make_response(json.dumps(resolved_data)))
-#     except Exception as e:
-#         return(e
-
 @app.route('/userPreferences', methods=['GET', 'POST'])
 def userPreferences():
     try:
