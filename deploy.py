@@ -34,3 +34,11 @@ def restaurant_info(name):
     for business in business_data['businesses']:
         restaurant_names.append(business['name'])
     return restaurant_names
+
+@app.route('/testData', methods=['GET', 'POST'])
+def testData():
+    try:
+        data = request.get_json()
+        return data
+    except Exception as e:
+        return(e)
