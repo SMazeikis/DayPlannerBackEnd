@@ -41,7 +41,7 @@ def testData():
 @cross_origin()
 def makeDay():
     try:
-        userId = request.args.get('userId')
+        userId = request.args.get('userId', type = str)
         dayPlan = makeDay(userId)
         return dayPlan
     except Exception as e:
