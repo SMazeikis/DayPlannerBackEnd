@@ -27,15 +27,15 @@ def userPreferences():
     except Exception as e:
         return(e)
 
-@app.route('/testData', methods=['GET', 'POST'])
-@cross_origin()
-def testData():
-    try:
-        data = request.get_json()
-        makeDay(data)
-        return data
-    except Exception as e:
-        return(e)
+# @app.route('/testData', methods=['GET', 'POST'])
+# @cross_origin()
+# def testData():
+#     try:
+#         data = request.args.get('userId', type = str)
+#         makeDay(data)
+#         return data
+#     except Exception as e:
+#         return(e)
 
 @app.route('/makeDay', methods=['GET'])
 @cross_origin()

@@ -38,7 +38,8 @@ def makeDay(userId):
         activities.append(restaurant_info(activity))
     all_restaurants = restaurants[0] + restaurants[1]
     all_activities = activities[0] + activities[1]
-    return("ok")
+    return({"restaurants" : all_restaurants,
+            "activities" : all_activities})
 
 def restaurant_info(name):
     restaurant_names = []
