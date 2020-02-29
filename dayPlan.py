@@ -10,9 +10,6 @@ MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218
 
 client = Client(MY_API_KEY)
 
-cred = credentials.Certificate('./confidential.json')
-default_app = firebase_admin.initialize_app(cred)
-
 db = firestore.client()
 
 data = {"userId": "GFxKdNh7WQhiwgX5zIMHMyzAuN93",

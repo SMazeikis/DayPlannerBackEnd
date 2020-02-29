@@ -4,11 +4,17 @@ from flask_cors import CORS, cross_origin
 from yelp.client import Client
 from user import assignPreferences
 from dayPlan import makeDay
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+cred = credentials.Certificate('./confidential.json')
+default_app = firebase_admin.initialize_app(cred)
 
 
 @app.route('/userPreferences', methods=['GET', 'POST'])
