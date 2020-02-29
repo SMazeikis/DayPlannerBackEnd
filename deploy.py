@@ -40,11 +40,10 @@ def userPreferences():
 @app.route('/makeDay', methods=['GET'])
 @cross_origin()
 def makeDay():
+    userId = request.args.get('userId', type = str)
     try:
-        userId = request.args.get('userId', type = str)
-        print(type(userId))
         dayPlan = makeDay(userId)
         return dayPlan
     except Exception as e:
-        userId = request.args.get('userId', type = str)
-        return str(type(userId))
+        print(e)
+        return userId
