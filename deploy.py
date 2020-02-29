@@ -47,4 +47,4 @@ def makeDay():
         return dayPlan
     except Exception as e:
         userId = request.args.get('userId', type = str)
-        return type(userId)
+        return str(type(userId))
