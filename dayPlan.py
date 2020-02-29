@@ -50,4 +50,6 @@ def restaurant_info(name):
     business_data = response.json()
     for business in business_data['businesses']:
         restaurant_names.append(business['name'])
-    return (restaurant_names)
+    return restaurant_names
+
+print(makeDay("GFxKdNh7WQhiwgX5zIMHMyzAuN93"))

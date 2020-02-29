@@ -42,7 +42,9 @@ def userPreferences():
 def makeDay():
     try:
         userId = request.args.get('userId', type = str)
+        print(type(userId))
         dayPlan = makeDay(userId)
         return dayPlan
     except Exception as e:
-        return(e)
+        userId = request.args.get('userId', type = str)
+        return type(userId)
