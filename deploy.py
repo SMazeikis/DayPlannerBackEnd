@@ -7,11 +7,12 @@ from dayPlan import makeDay
 
 
 app = Flask(__name__)
-CORS(app)
-
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/userPreferences', methods=['GET', 'POST'])
+@cross_origin()
 def userPreferences():
     try:
         data = request.get_json()
@@ -21,6 +22,7 @@ def userPreferences():
         return(e)
 
 @app.route('/testData', methods=['GET', 'POST'])
+@cross_origin()
 def testData():
     try:
         data = request.get_json()
@@ -30,6 +32,7 @@ def testData():
         return(e)
 
 @app.route('/makeDay', methods=['GET'])
+@cross_origin()
 def makeDay():
     try:
         data = request.get_json()
