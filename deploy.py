@@ -13,9 +13,9 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-cred = credentials.Certificate('./confidential.json')
-default_app = firebase_admin.initialize_app(cred)
-
+if (not len(firebase_admin._apps)):
+    cred = credentials.Certificate('./confidential.json')
+    default_app = firebase_admin.initialize_app(cred)
 
 @app.route('/userPreferences', methods=['GET', 'POST'])
 @cross_origin()
