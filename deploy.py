@@ -41,7 +41,7 @@ def testData():
 @cross_origin()
 def makeDay():
     try:
-        data = request.get_json()
+        data = jsonify(request.params)
         dayPlan = makeDay(data)
         return dayPlan
     except Exception as e:
