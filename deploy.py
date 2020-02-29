@@ -37,9 +37,9 @@ def userPreferences():
 #     except Exception as e:
 #         return(e)
 
-@app.route('/makeDay', methods=['GET'])
+@app.route('/planDay', methods=['GET'])
 @cross_origin()
-def makeDay(random):
+def planDay():
     userId = request.args.get('userId', type = str)
     try:
         dayPlan = makeDay(userId)
