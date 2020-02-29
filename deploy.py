@@ -42,7 +42,6 @@ def testData():
 def makeDay():
     try:
         data = jsonify(request.params)
-        dayPlan = makeDay(data)
-        return dayPlan
+        return data
     except Exception as e:
         return(e)
