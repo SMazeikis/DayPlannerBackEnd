@@ -39,7 +39,7 @@ def userPreferences():
 
 @app.route('/makeDay', methods=['GET'])
 @cross_origin()
-def makeDay():
+def makeDay(random):
     userId = request.args.get('userId', type = str)
     try:
         dayPlan = makeDay(userId)
