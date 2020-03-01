@@ -33,13 +33,13 @@ def makeDay(userId):
     restaurants = []
     activities = []
     for cuisine in doc_items["food"]:
-        restaurants.append(restaurant_info(cuisine))
+        for restaurant in restaurant_info(cuisine):
+            restaurants.append(restaurant)
     for activity in doc_items["activities"]:
-        activities.append(restaurant_info(activity))
-    all_restaurants = restaurants[0] + restaurants[1]
-    all_activities = activities[0] + activities[1]
-    return({"restaurants" : all_restaurants,
-            "activities" : all_activities})
+        for activity_business in restaurant_info(activity):
+            activities.append(activity_business)
+    return({"restaurants" : restaurants,
+            "activities" : activities})
 
 def restaurant_info(name):
     restaurant_names = []
