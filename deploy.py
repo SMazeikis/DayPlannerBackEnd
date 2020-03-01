@@ -45,5 +45,4 @@ def planDay():
         dayPlan = makeDay(userId)
         return dayPlan
     except Exception as e:
-        print(e)
-        return userId
+        return e
