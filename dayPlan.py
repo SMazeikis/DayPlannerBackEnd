@@ -2,7 +2,11 @@ import pyrebase
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-import os, requests, json, pyrebase, firebase_admin
+import os
+import requests
+import json
+import pyrebase
+import firebase_admin
 from flask import Flask, request, jsonify, make_response
 from yelp.client import Client
 
@@ -17,14 +21,15 @@ if (not len(firebase_admin._apps)):
 db = firestore.client()
 
 data = {"userId": "GFxKdNh7WQhiwgX5zIMHMyzAuN93",
-                 "date" : "wfr",
-                 "price" : "fea",
-                 "time" : "fas",
-                 "duration" : "feaf"
-       }
+        "date": "wfr",
+        "price": "fea",
+                 "time": "fas",
+                 "duration": "feaf"
+        }
 
 endpoint = "https://api.yelp.com/v3/businesses/search"
 header = {'Authorization': 'bearer %s' % MY_API_KEY}
+
 
 def makeDay(userId):
     snapshot = db.collection('users').document(userId)
@@ -38,15 +43,16 @@ def makeDay(userId):
     for activity in doc_items["activities"]:
         for activity_business in restaurant_info(activity):
             activities.append(activity_business)
-    return({"restaurants" : restaurants,
-            "activities" : activities})
+    return({"restaurants": restaurants,
+            "activities": activities})
+
 
 def restaurant_info(name):
     restaurant_names = []
-    parameters = {'term' : name,
-              'limit': 1,
-              'location': 'Dublin'}
-    response = requests.get(url = endpoint, params = parameters, headers= header)
+    parameters = {'term': name,
+                  'limit': 1,
+                  'location': 'Dublin'}
+    response = requests.get(url=endpoint, params=parameters, headers=header)
     business_data = response.json()
     for business in business_data['businesses']:
         restaurant_names.append(business['name'])

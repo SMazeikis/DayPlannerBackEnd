@@ -9,22 +9,23 @@ if (not len(firebase_admin._apps)):
 
 db = firestore.client()
 
+
 def assignPreferences(data):
-  userId = data["userId"]
-  snapshot = db.collection('users').document(userId)
-  foodDict = []
-  activityDict = []
-  for choice in data["foodPreferences"]:
-    if choice["clicked"]:
-        foodDict.append(choice["html"])
-    else:
-        pass
-  for choice in data["activityPreferences"]:
-    if choice["clicked"]:
-        activityDict.append(choice["html"])
-    else:
-        pass
-  snapshot.set({"food":foodDict}, merge= True)
-  snapshot.set({"activities" :activityDict}, merge=True)
-  snapshot.set({"selectedPreferences": "true"}, merge=True)
-  return "ok"
+    userId = data["userId"]
+    snapshot = db.collection('users').document(userId)
+    foodDict = []
+    activityDict = []
+    for choice in data["foodPreferences"]:
+        if choice["clicked"]:
+            foodDict.append(choice["html"])
+        else:
+            pass
+    for choice in data["activityPreferences"]:
+        if choice["clicked"]:
+            activityDict.append(choice["html"])
+        else:
+            pass
+    snapshot.set({"food": foodDict}, merge=True)
+    snapshot.set({"activities": activityDict}, merge=True)
+    snapshot.set({"selectedPreferences": "true"}, merge=True)
+    return "ok"

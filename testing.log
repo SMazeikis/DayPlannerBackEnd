@@ -1,0 +1,8 @@
+test_dayPlan (test_dayPlan.testUser) ... ok
+test_restaurantInfo (test_dayPlan.testUser) ... ok
+test_addingPreferences (test_user.testUser) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.425s
+
+OK

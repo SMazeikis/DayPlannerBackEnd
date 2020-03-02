@@ -1,6 +1,7 @@
 import unittest
 from dayPlan import makeDay, restaurant_info
 
+
 class testUser(unittest.TestCase):
 
     def setUp(self):
@@ -9,7 +10,7 @@ class testUser(unittest.TestCase):
     def test_restaurantInfo(self):
         print("testing return type of restaurant_info")
         self.assertEqual(list, type(restaurant_info("indian")))
-    
+
     def test_dayPlan(self):
         print("testing return type of makeDay")
         self.assertEqual(dict, type(makeDay(self.userId)))

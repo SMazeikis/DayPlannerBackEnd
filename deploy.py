@@ -1,4 +1,8 @@
-import os, requests, json, pyrebase, firebase_admin
+import os
+import requests
+import json
+import pyrebase
+import firebase_admin
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS, cross_origin
 from yelp.client import Client
@@ -16,6 +20,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 if (not len(firebase_admin._apps)):
     cred = credentials.Certificate('./confidential.json')
     default_app = firebase_admin.initialize_app(cred)
+
 
 @app.route('/userPreferences', methods=['GET', 'POST'])
 @cross_origin()
@@ -37,10 +42,11 @@ def userPreferences():
 #     except Exception as e:
 #         return(e)
 
+
 @app.route('/planDay', methods=['GET'])
 @cross_origin()
 def planDay():
-    userId = request.args.get('userId', type = str)
+    userId = request.args.get('userId', type=str)
     try:
         dayPlan = makeDay(userId)
         return dayPlan
