@@ -27,5 +27,4 @@ def assignPreferences(data):
             pass
     snapshot.set({"food": foodDict}, merge=True)
     snapshot.set({"activities": activityDict}, merge=True)
-    snapshot.set({"selectedPreferences": "true"}, merge=True)
     return "ok"
