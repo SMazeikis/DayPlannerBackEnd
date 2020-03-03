@@ -16,7 +16,7 @@ MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218
 client = Client(MY_API_KEY)
 
 if (not len(firebase_admin._apps)):
-    cred = credentials.Certificate('dayplanner-backend\confidential.json')
+    cred = credentials.Certificate('./confidential.json')
     default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -46,6 +46,7 @@ def makeDay(data):
         for activity_business in yelp_business_info(activity):
             activities.append(activity_business)
     plannedDay = arrange_in_order(restaurants, activities, data["duration"])
+    print(plannedDay)
     return(plannedDay)
 
 
