@@ -7,6 +7,7 @@ import requests
 import json
 import pyrebase
 import firebase_admin
+import random
 from flask import Flask, request, jsonify, make_response
 from yelp.client import Client
 
@@ -37,17 +38,42 @@ def makeDay(data):
     for activity in doc_items["activities"]:
         for activity_business in yelp_business_info(activity):
             activities.append(activity_business)
-    return({"restaurants": restaurants,
-            "activities": activities})
+    plannedDay = arrange_in_order(restaurants, activities, data["duration"])
+    return(plannedDay)
 
 
-def yelp_business_info(name):
+def yelp_business_info(name, limit=1):
     yelp_business_names = []
     parameters = {'term': name,
-                  'limit': 1,
+                  'limit': limit,
                   'location': 'Dublin'}
     response = requests.get(url=endpoint, params=parameters, headers=header)
     business_data = response.json()
     for business in business_data['businesses']:
         yelp_business_names.append(business['name'])
     return yelp_business_names
+
+
+def arrange_in_order(restaurants, activities, duration):
+    day = {}
+
+    if duration >= 6:
+        restaurant_limit = 2
+        day[random.choice(activities)] = "first"
+        day[random.choice(activities)] = "second"
+        day[random.choice(restaurants)] = "third"
+        day[random.choice(activities)] = "fourth"
+        day[random.choice(restaurants)] = "fifth"
+
+    elif duration >= 3:
+        restaurant_limit = 1
+        day[random.choice(activities)] = "first"
+        day[random.choice(activities)] = "second"
+        day[random.choice(restaurants)] = "third"
+
+    else:
+        restaurant_limit = 0
+        day[random.choice(activities)] = "first"
+        day[random.choice(activities)] = "second"
+    
+    return day
