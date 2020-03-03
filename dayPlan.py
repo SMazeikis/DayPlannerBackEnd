@@ -16,7 +16,7 @@ MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218
 client = Client(MY_API_KEY)
 
 if (not len(firebase_admin._apps)):
-    cred = credentials.Certificate('./confidential.json')
+    cred = credentials.Certificate('dayplanner-backend\confidential.json')
     default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -24,6 +24,13 @@ db = firestore.client()
 endpoint = "https://api.yelp.com/v3/businesses/search"
 header = {'Authorization': 'bearer %s' % MY_API_KEY}
 
+
+data = {"userId" : "PUGAMfSoEZgvT2C9mthlpOmTo453",
+"date": {},
+"price": {"$": "false", "$$": "true", "$$$": "false"},
+"time": {"h": "1", "m": "15", "a": "pm"},
+"duration": 7
+}
 
 def makeDay(data):
     userId = data["userId"]
@@ -77,3 +84,5 @@ def arrange_in_order(restaurants, activities, duration):
         day[random.choice(activities)] = "second"
     
     return day
+
+
