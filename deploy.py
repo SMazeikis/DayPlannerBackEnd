@@ -32,23 +32,12 @@ def userPreferences():
     except Exception as e:
         return(e)
 
-# @app.route('/testData', methods=['GET', 'POST'])
-# @cross_origin()
-# def testData():
-#     try:
-#         data = request.args.get('userId', type = str)
-#         makeDay(data)
-#         return data
-#     except Exception as e:
-#         return(e)
-
-
-@app.route('/planDay', methods=['GET'])
+@app.route('/planDay', methods=['POST'])
 @cross_origin()
 def planDay():
-    userId = request.args.get('userId', type=str)
     try:
-        dayPlan = makeDay(userId)
+        data = request.get_json()
+        dayPlan = makeDay(data)
         return dayPlan
     except Exception as e:
         return e

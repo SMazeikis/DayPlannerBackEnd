@@ -38,22 +38,22 @@ def makeDay(userId):
     restaurants = []
     activities = []
     for cuisine in doc_items["food"]:
-        for restaurant in restaurant_info(cuisine):
+        for restaurant in yelp_business_info(cuisine):
             restaurants.append(restaurant)
     for activity in doc_items["activities"]:
-        for activity_business in restaurant_info(activity):
+        for activity_business in yelp_business_info(activity):
             activities.append(activity_business)
     return({"restaurants": restaurants,
             "activities": activities})
 
 
-def restaurant_info(name):
-    restaurant_names = []
+def yelp_business_info(name):
+    yelp_business_names = []
     parameters = {'term': name,
                   'limit': 1,
                   'location': 'Dublin'}
     response = requests.get(url=endpoint, params=parameters, headers=header)
     business_data = response.json()
     for business in business_data['businesses']:
-        restaurant_names.append(business['name'])
-    return restaurant_names
+        yelp_business_names.append(business['name'])
+    return yelp_business_names
