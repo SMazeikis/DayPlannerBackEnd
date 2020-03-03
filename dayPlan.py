@@ -20,18 +20,12 @@ if (not len(firebase_admin._apps)):
 
 db = firestore.client()
 
-data = {"userId": "GFxKdNh7WQhiwgX5zIMHMyzAuN93",
-        "date": "wfr",
-        "price": "fea",
-                 "time": "fas",
-                 "duration": "feaf"
-        }
-
 endpoint = "https://api.yelp.com/v3/businesses/search"
 header = {'Authorization': 'bearer %s' % MY_API_KEY}
 
 
-def makeDay(userId):
+def makeDay(data):
+    userId = data["userId"]
     snapshot = db.collection('users').document(userId)
     doc_ref = snapshot.get()
     doc_items = doc_ref.to_dict()
