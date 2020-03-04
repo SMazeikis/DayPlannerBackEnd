@@ -40,4 +40,5 @@ def planDay():
         dayPlan = makeDay(data)
         return dayPlan
     except Exception as e:
-        return e
+        print(e)
+        return "false"
