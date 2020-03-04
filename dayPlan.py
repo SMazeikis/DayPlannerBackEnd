@@ -47,7 +47,6 @@ def makeDay(data):
         activity_info = yelp_business_info(activity)
         activities.append(activity_info)
     plannedDay = arrange_in_order(restaurants, activities, data["duration"])
-    print("afer everything")
     return(plannedDay)
 
 
