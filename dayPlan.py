@@ -47,6 +47,7 @@ def makeDay(data):
         activity_info = yelp_business_info(activity)
         activities.append(activity_info)
     plannedDay = arrange_in_order(restaurants, activities, data["duration"])
+    print("afer everything")
     return(plannedDay)
 
 
@@ -78,15 +79,16 @@ def arrange_in_order(restaurants, activities, duration):
     else:
         restaurant_counter = 0
 
-    print("ok")
     activity_by_option = random.choice(activities)
     activity = activity_by_option.popitem()
     time = distance_calculator("6.2603","53.3498", str(activity[1]['location']['longitude']),  str(activity[1]['location']['latitude']))
     times.append(time)
     day[0] = activity
 
+    print("before for loop")
     for event_number in range(1, duration):
             if event_number % 2 == 0 and event_number != 0 and restaurant_counter != 0:
+                print("before first if")
                 restaurant_by_cuisine = random.choice(restaurants)
                 restaurant = restaurant_by_cuisine.popitem()
                 last_event_location = str(day[event_number - 1][1]['location']['longitude']), str(day[event_number - 1][1]['location']['latitude'])
@@ -94,13 +96,16 @@ def arrange_in_order(restaurants, activities, duration):
                 times.append(time)
                 day[event_number] = restaurant
                 restaurant_counter -= 1
+                print("after first if")
             else:
+                print("before second if")
                 activity_by_option = random.choice(activities)
                 activity = activity_by_option.popitem()
                 last_event_location = str(day[event_number - 1][1]['location']['longitude']), str(day[event_number - 1][1]['location']['latitude'])
                 time = distance_calculator(last_event_location[0], last_event_location[1], str(activity[1]['location']['longitude']), str(activity[1]['location']['latitude']))
                 times.append(time)
                 day[event_number] = activity
+                print("after second if")
     
     day["times"] = times
     return day

@@ -37,7 +37,9 @@ def userPreferences():
 def planDay():
     try:
         data = request.get_json()
+        print("here is okay?")
         dayPlan = makeDay(data)
+        print("error?")
         return jsonify(dayPlan)
     except Exception as e:
         print(e)
