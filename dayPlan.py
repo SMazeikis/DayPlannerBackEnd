@@ -78,6 +78,7 @@ def arrange_in_order(restaurants, activities, duration):
     else:
         restaurant_counter = 0
 
+    print("ok")
     activity_by_option = random.choice(activities)
     activity = activity_by_option.popitem()
     time = distance_calculator("6.2603","53.3498", str(activity[1]['location']['longitude']),  str(activity[1]['location']['latitude']))
@@ -85,7 +86,6 @@ def arrange_in_order(restaurants, activities, duration):
     day[0] = activity
 
     for event_number in range(1, duration):
-
             if event_number % 2 == 0 and event_number != 0 and restaurant_counter != 0:
                 restaurant_by_cuisine = random.choice(restaurants)
                 restaurant = restaurant_by_cuisine.popitem()
