@@ -58,6 +58,7 @@ def yelp_business_info(name, limit=1):
     business_data = response.json()
     for business in business_data['businesses']:
         yelp_business_names.append(business['name'])
+        
     return yelp_business_names
 
 

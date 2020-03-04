@@ -36,9 +36,11 @@ def userPreferences():
 @cross_origin()
 def planDay():
     try:
-        data = request.get_data()
+        data = request.json()
         dayPlan = makeDay(data)
         return dayPlan
     except Exception as e:
+        print(request.json())
+        print(request.data())
         print(e)
         return "false"
