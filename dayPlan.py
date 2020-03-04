@@ -16,7 +16,7 @@ MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218
 client = Client(MY_API_KEY)
 
 if (not len(firebase_admin._apps)):
-    cred = credentials.Certificate(r'C:\Users\Salvijus\Desktop\2020-ca326-jholbanel-dayplanner\code\dayplanner-backend\confidential.json')
+    cred = credentials.Certificate('./confidential.json')
     default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -66,21 +66,23 @@ def arrange_in_order(restaurants, activities, duration):
 
     if duration >= 6:
         restaurant_limit = 2
-        day["first"] = random.choice(activities)
-        day["second"] = random.choice(activities)
-        day["third"] = random.choice(restaurants)
-        day["fourth"] = random.choice(activities)
-        day["fifth"] = random.choice(restaurants)
+        day[0] = random.choice(activities)
+        day[1] = random.choice(activities)
+        day[2] = random.choice(restaurants)
+        day[3] = random.choice(activities)
+        day[4] = random.choice(restaurants)
 
     elif duration >= 3:
         restaurant_limit = 1
-        day["first"] = random.choice(activities)
-        day["second"] = random.choice(activities)
-        day["third"] = random.choice(restaurants)
+        day[0] = random.choice(activities)
+        day[1] = random.choice(activities)
+        day[2] = random.choice(restaurants)
 
     else:
         restaurant_limit = 0
-        day["first"] = random.choice(activities)
-        day["second"] = random.choice(activities)
+        day[0] = random.choice(activities)
+        day[1] = random.choice(activities)
     
     return day
+
+print(makeDay(data))
