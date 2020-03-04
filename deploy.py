@@ -38,7 +38,6 @@ def planDay():
     try:
         data = request.get_json()
         dayPlan = makeDay(data)
-        print(dayPlan)
         return json.dumps(dayPlan)
     except Exception as e:
         print(e)

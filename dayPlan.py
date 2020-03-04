@@ -80,8 +80,6 @@ def arrange_in_order(restaurants, activities, duration):
 
     activity_by_option = random.choice(activities)
     activity = activity_by_option.popitem()
-    time = distance_calculator("6.2603","53.3498", str(activity[1]['location']['longitude']),  str(activity[1]['location']['latitude']))
-    times.append(time)
     day[0] = activity
 
 
