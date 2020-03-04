@@ -49,7 +49,7 @@ def makeDay(data):
     return(plannedDay)
 
 
-def yelp_business_info(tag, limit=1):
+def yelp_business_info(tag, limit=10):
     yelp_business_names = {}
     parameters = {'term': tag,
                   'limit': limit,
@@ -58,7 +58,6 @@ def yelp_business_info(tag, limit=1):
     business_data = response.json()
     for business in business_data['businesses']:
         yelp_business_names[business['name']] = {
-                                'location' : business['coordinates'],
                                 'url' : business['url'],
                                 'tag' :  tag}
     return yelp_business_names
@@ -67,25 +66,39 @@ def yelp_business_info(tag, limit=1):
 def arrange_in_order(restaurants, activities, duration):
     day = {}
 
+    restaurant_counter = 0
     if duration >= 6:
-        restaurant_limit = 2
-        day[0] = random.choice(activities)
-        day[1] = random.choice(activities)
-        day[2] = random.choice(restaurants)
-        day[3] = random.choice(activities)
-        day[4] = random.choice(restaurants)
+        restaurant_counter = 2
+        for event_number in range(0, duration):
+            if event_number % 2 == 0 and event_number != 0 and restaurant_counter != 0:
+                restaurant_by_cuisine = random.choice(restaurants)
+                restaurant = restaurant_by_cuisine.popitem()
+                day[event_number] = restaurant
+                restaurant_counter -= 1
+            else:
+                activity_by_option = random.choice(activities)
+                activity = activity_by_option.popitem()
+                day[event_number] = activity
 
     elif duration >= 3:
-        restaurant_limit = 1
-        day[0] = random.choice(activities)
-        day[1] = random.choice(activities)
-        day[2] = random.choice(restaurants)
+        restaurant_counter = 1
+        for event_number in range(0, duration):
+            if event_number % 2 == 0 and event_number != 0 and restaurant_counter != 0:
+                restaurant_by_cuisine = random.choice(restaurants)
+                restaurant = restaurant_by_cuisine.popitem()
+                day[event_number] = restaurant
+                restaurant_counter -= 1
+            else:
+                activity_by_option = random.choice(activities)
+                activity = activity_by_option.popitem()
+                day[event_number] = activity
 
     else:
-        restaurant_limit = 0
-        day[0] = random.choice(activities)
-        day[1] = random.choice(activities)
+        for event_number in range(0, duration):
+            activity_by_option = random.choice(activities)
+            activity = activity_by_option.popitem()
+            day[event_number] = activity
     
     return day
 
-print(makeDay(data))
+#print(makeDay(data))
