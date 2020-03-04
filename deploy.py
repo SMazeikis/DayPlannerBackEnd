@@ -38,9 +38,7 @@ def planDay():
     try:
         data = request.json()
         dayPlan = makeDay(data)
-        return dayPlan
+        return jsonify(dayPlan)
     except Exception as e:
-        print(request.json())
-        print(request.data())
         print(e)
         return "false"
