@@ -16,7 +16,7 @@ MY_API_KEY = "b7wSeZeFykMFbPx-n7VpQD9gwi8EZWYYjaPEoa3ExSZv5c4LlGpANEhKR-sUW51218
 client = Client(MY_API_KEY)
 
 if (not len(firebase_admin._apps)):
-    cred = credentials.Certificate('dayplanner-backend\confidential.json')
+    cred = credentials.Certificate(r'C:\Users\Salvijus\Desktop\2020-ca326-jholbanel-dayplanner\code\dayplanner-backend\confidential.json')
     default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -40,24 +40,24 @@ def makeDay(data):
     restaurants = []
     activities = []
     for cuisine in doc_items["food"]:
-        for restaurant in yelp_business_info(cuisine):
-            restaurants.append(restaurant)
+        restaurant_info = yelp_business_info(cuisine)
+        restaurants.append(restaurant_info)
     for activity in doc_items["activities"]:
-        for activity_business in yelp_business_info(activity):
-            activities.append(activity_business)
+        activity_info = yelp_business_info(activity)
+        activities.append(activity_info)
     plannedDay = arrange_in_order(restaurants, activities, data["duration"])
     return(plannedDay)
 
 
-def yelp_business_info(name, limit=1):
+def yelp_business_info(tag, limit=3):
     yelp_business_names = {}
-    parameters = {'term': name,
+    parameters = {'term': tag,
                   'limit': limit,
                   'location': 'Dublin'}
     response = requests.get(url=endpoint, params=parameters, headers=header)
     business_data = response.json()
     for business in business_data['businesses']:
-        yelp_business_names[business['name']] = business['coordinates'],business['url']
+        yelp_business_names[business['name']] = business['coordinates'],business['url'], tag
     return yelp_business_names
 
 
@@ -66,23 +66,21 @@ def arrange_in_order(restaurants, activities, duration):
 
     if duration >= 6:
         restaurant_limit = 2
-        day[random.choice(activities)] = "first"
-        day[random.choice(activities)] = "second"
-        day[random.choice(restaurants)] = "third"
-        day[random.choice(activities)] = "fourth"
-        day[random.choice(restaurants)] = "fifth"
+        day["first"] = random.choice(activities)
+        day["second"] = random.choice(activities)
+        day["third"] = random.choice(restaurants)
+        day["fourth"] = random.choice(activities)
+        day["fifth"] = random.choice(restaurants)
 
     elif duration >= 3:
         restaurant_limit = 1
-        day[random.choice(activities)] = "first"
-        day[random.choice(activities)] = "second"
-        day[random.choice(restaurants)] = "third"
+        day["first"] = random.choice(activities)
+        day["second"] = random.choice(activities)
+        day["third"] = random.choice(restaurants)
 
     else:
         restaurant_limit = 0
-        day[random.choice(activities)] = "first"
-        day[random.choice(activities)] = "second"
+        day["first"] = random.choice(activities)
+        day["second"] = random.choice(activities)
     
     return day
-
-
