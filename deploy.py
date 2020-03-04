@@ -2,7 +2,6 @@ import os
 import requests
 import json
 import pyrebase
-import dumps
 import firebase_admin
 from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS, cross_origin
@@ -40,7 +39,7 @@ def planDay():
         data = request.get_json()
         dayPlan = makeDay(data)
         print(dayPlan)
-        return dumps(dayPlan)
+        return json.dumps(dayPlan)
     except Exception as e:
         print(e)
         return "false"
