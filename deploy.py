@@ -35,9 +35,9 @@ def userPreferences():
 @app.route('/planDay', methods=['POST'])
 @cross_origin()
 def planDay():
-    print(request.json())
+    print(request.is_json())
     try:
-        data = request.get_json()
+        data = request.get_data()
         dayPlan = makeDay(data)
         return dayPlan
     except Exception as e:
