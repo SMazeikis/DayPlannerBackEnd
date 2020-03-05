@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS, cross_origin
 from yelp.client import Client
 from user import assignPreferences
-from dayPlan import makeDay, makeAnotherDay
+from dayPlan import makeDay
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
