@@ -26,6 +26,7 @@ endpoint = "https://api.yelp.com/v3/businesses/search"
 header = {'Authorization': 'bearer %s' % MY_API_KEY}
 
 
+
 data = {"userId" : "PUGAMfSoEZgvT2C9mthlpOmTo453",
 "date": {},
 "price": {"$": "false", "$$": "true", "$$$": "false"},
@@ -38,19 +39,26 @@ def makeDay(data):
     snapshot = db.collection('users').document(userId)
     doc_ref = snapshot.get()
     doc_items = doc_ref.to_dict()
+    old_names = doc_items["usedBusinesses"]
     restaurants = []
     activities = []
     for cuisine in doc_items["food"]:
-        restaurant_info = yelp_business_info(cuisine)
+        restaurant_info = yelp_business_info(cuisine, old_names)
         restaurants.append(restaurant_info)
     for activity in doc_items["activities"]:
-        activity_info = yelp_business_info(activity)
+        activity_info = yelp_business_info(activity, old_names)
         activities.append(activity_info)
     plannedDay = arrange_in_order(restaurants, activities, data["duration"])
+    outputedNames = plannedDay.values()
+    usedBusinessNames = []
+    for name in outputedNames:
+        usedBusinessNames.append(name[0])
+    usedBusinessNames = usedBusinessNames[:-1] + old_names
+    snapshot.set({"usedBusinesses": usedBusinessNames}, merge=True)
     return(plannedDay)
 
 
-def yelp_business_info(tag, limit=10):
+def yelp_business_info(tag, old_names, limit=10):
     yelp_business_names = {}
     parameters = {'term': tag,
                   'limit': limit,
@@ -58,10 +66,13 @@ def yelp_business_info(tag, limit=10):
     response = requests.get(url=endpoint, params=parameters, headers=header)
     business_data = response.json()
     for business in business_data['businesses']:
-        yelp_business_names[business['name']] = {
-                                'location' : business['coordinates'],
-                                'url' : business['url'],
-                                'tag' :  tag}
+        if business['name'] not in old_names:
+            yelp_business_names[business['name']] = {
+                                    'location' : business['coordinates'],
+                                    'url' : business['url'],
+                                    'tag' :  tag}
+    if len(yelp_business_names) == 0:
+        return "none found"
     return yelp_business_names
 
 

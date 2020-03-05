@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS, cross_origin
 from yelp.client import Client
 from user import assignPreferences
-from dayPlan import makeDay
+from dayPlan import makeDay, makeAnotherDay
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -42,3 +42,14 @@ def planDay():
     except Exception as e:
         print(e)
         return "false"
+
+# @app.route('/rePlanDay', methods=['POST'])
+# @cross_origin()
+# def rePlanDay():
+#     try:
+#         data = request.get_json()
+#         dayPlan = makeDay(data)
+#         return json.dumps(dayPlan)
+#     except Exception as e:
+#         print(e)
+#         return "false"
