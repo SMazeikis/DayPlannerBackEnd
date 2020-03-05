@@ -58,10 +58,9 @@ def makeDay(data):
     return(plannedDay)
 
 
-def yelp_business_info(tag, old_names, limit=10):
+def yelp_business_info(tag, old_names):
     yelp_business_names = {}
     parameters = {'term': tag,
-                  'limit': limit,
                   'location': 'Dublin'}
     response = requests.get(url=endpoint, params=parameters, headers=header)
     business_data = response.json()
